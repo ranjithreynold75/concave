@@ -17,6 +17,13 @@ mc.connect(url,function(err,db){
     }
 });
 
+var users={
+    user:{
+
+    }
+
+};
+
 
 
 
@@ -24,11 +31,94 @@ mc.connect(url,function(err,db){
 module.exports=function (app,io) {
 
 
+io.on("connection",function(socket){
+
+    console.log("A user connected:"+ socket.id);
+    socket.emit('message', {'id': socket.id});
+
+    socket.on('register', function (data) {
+        var d = JSON.parse(data);
+        console.log("registering user " + d.id);
+        users.user[d.no] = d.id;
+
+        console.log(users);
+        //  io.sockets.emit("notify",{"message":"welcome to smartlife"});
+    })
 
 
-app.get("/",function(req,res){
+
+
+
+
+
+
+
+
+
+})
+
+
+    app.get("/",function(req,res){
     res.send("welcome to concave-->Lets collaborate");
 })
+
+    app.post("/signup",function(req,res){
+
+        var collection=_db.collection("user");
+        var data={
+          _id:req.body.no,
+            name:req.body.name,
+            password:req.body.pass,
+            location:{
+              longitude:0,
+                latitude:0
+            }
+
+        };
+
+        collection.insertOne(data,function(err){
+        if(err)
+        console.log(err);
+
+        });
+
+
+
+
+    })
+
+    app.post("/login",function (req,res) {
+
+        var no=req.body.no;
+        var password=req.body.pass;
+
+        var collection=_db.collection("user");
+        var cursor=collection.find({_id:no,password:password});
+        cursor.count(function(err,c){
+            if(err)
+                console.log(err);
+            else
+            {
+                if(c==1)
+                {
+                    console.log("user signed Up:"+no);
+                res.send("success");
+                }
+                else
+                {
+                    res.send("unsuccess");
+                }
+            }
+
+
+
+        })
+
+
+
+
+
+    })
 
 
 
