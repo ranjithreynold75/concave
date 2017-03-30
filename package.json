@@ -1,0 +1,19 @@
+{
+  "name": "concave",
+  "version": "0.0.1",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./bin/app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "mongodb": "^2.2.25",
+    "node-schedule": "^1.2.1",
+    "socket.io": "^1.7.3"
+  },
+  "engines": {
+    "node": "4.5.0",
+    "npm": "2.15.9"
+  }
+}
