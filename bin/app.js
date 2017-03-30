@@ -4,7 +4,7 @@ var http=require('http').Server(app);
 var io=require('socket.io')(http);
 
 
-var bodyparser=require('body_parser');
+var bodyparser=require('body-parser');
 
 function notify(req,res,next){
     console.log('request to'+req.url);
