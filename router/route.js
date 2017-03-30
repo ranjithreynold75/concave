@@ -45,14 +45,10 @@ io.on("connection",function(socket){
         //  io.sockets.emit("notify",{"message":"welcome to smartlife"});
     })
 
+    socket.on('disconnect', function () {
+        console.log('A user disconnected ' + socket.id);
 
-
-
-
-
-
-
-
+    })
 
 
 })
