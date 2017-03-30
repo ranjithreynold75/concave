@@ -104,7 +104,7 @@ io.on("connection",function(socket){
             {
                 if(c==1)
                 {
-                    console.log("user signed Up:"+no);
+                    console.log("user logged in:"+no);
                 collection.updateOne({_id:no},{$set:{status:"online"}});
 
                     res.send("success");
