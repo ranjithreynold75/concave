@@ -38,6 +38,7 @@ io.on("connection",function(socket){
 
     socket.on('register', function (data) {
         var d = JSON.parse(data);
+        console.log(data);
         console.log("registering user " + d.id);
         users.user[d.no] = d.id;
 
