@@ -72,14 +72,17 @@ io.on("connection",function(socket){
             location:{
               longitude:0,
                 latitude:0
-            }
-
+            },
+          status:"offline"
         };
 
         collection.insertOne(data,function(err){
-        if(err)
-        console.log(err);
-
+        if(err) {
+            console.log(err);
+        res.send("unsuccess");
+        }
+        else
+            res.send("success");
         });
 
 
@@ -102,7 +105,9 @@ io.on("connection",function(socket){
                 if(c==1)
                 {
                     console.log("user signed Up:"+no);
-                res.send("success");
+                collection.updateOne({_id:no})
+
+                    res.send("success");
                 }
                 else
                 {
