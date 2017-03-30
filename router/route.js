@@ -51,8 +51,54 @@ io.on("connection",function(socket){
 
     })
 
+socket.on("p_chat",function(data){
+    var d=JSON.parse(data);
+    var from=d.from;
+    var to1=d.t;
+    var msg=d.m;
 
-})
+    console.log(d);
+    if(users.user[to1])
+    {
+        var s=users.user[to1];
+        console.log(s);
+        io.to(s).emit("receive",{from:from,message:msg});
+    }
+    else
+    {
+        console.log("not online");
+        socket.emit("receive",{from:to1,message:"not Online"});
+    }
+
+
+});
+
+
+    socket.on("online",function(data){
+
+        var d=JSON.parse(data);
+
+        var no=d.no;
+
+        var collection=_db.collection("user");
+        collection.updateOne({_id:no},{$set:{status:"online"}});
+    });
+
+
+
+    socket.on("idle",function(data){
+
+      var d=JSON.parse(data);
+
+      var no=d.no;
+
+      var collection=_db.collection("user");
+      collection.updateOne({_id:no},{$set:{status:"idle"}});
+  });
+
+
+
+});  //end of socket
 
 
     app.get("/",function(req,res){
@@ -116,11 +162,10 @@ io.on("connection",function(socket){
 
         })
 
-
-
-
-
     })
+
+
+
 
 
 
