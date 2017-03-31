@@ -64,16 +64,26 @@ io.on("connection",function(socket){
     {
 console.log(m+" "+sender);
 
-console.log(classifier.categorize(m));
+        if(m.match("like"))
+        {
+            if(m.match("pizza"))
+            {
+                socket.emit("notify", {message: "20% off on Pizza near your pizza hut"});
+
+            }
+        }
+/*console.log(classifier.categorize(m));
 var m1=classifier.categorize(m);
         var collection=_db.collection("user");
 
 
 
 if(m1=="positive") {
-    socket.emit("notify", {message: "20% off on Pizza near your pizza hut"});
 
 }
+  */
+
+
     }
 
 socket.on("p_chat",function(data){
