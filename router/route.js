@@ -66,14 +66,14 @@ console.log(m+" "+sender);
         })
 */
 
-     var result=m.test("/i like pizza/i");
-        if(result)
-        {
-console.log("match found");
-            }
-        else
+     var result=m.match("/i like pizza/i");
+        if(result.index==-1)
         {
             console.log("match not found");
+        }
+        else(result.index!=-1)
+        {
+            console.log(result.input);
         }
 
 
