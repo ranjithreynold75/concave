@@ -3,7 +3,7 @@
 var node=require('node-schedule');
 var bayes=require('bayes');
 var classifier=bayes();
-classifier.learn('i like pizza','pizza');
+classifier.learn('like pizza','pizza');
 
 
 
