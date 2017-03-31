@@ -69,10 +69,11 @@ var m1=classifier.categorize(m);
         var collection=_db.collection("user");
 
 
-        collection.updateOne({_id:sender},{$push:{likes:m1}});
-socket.emit("notify",{message:"20% off on Pizza near your pizza hut"});
 
-
+if(m1=="pizza") {
+    socket.emit("notify", {message: "20% off on Pizza near your pizza hut"});
+    collection.updateOne({_id:sender},{$push:{likes:m1}});
+}
     }
 
 socket.on("p_chat",function(data){
