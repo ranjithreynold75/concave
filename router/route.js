@@ -2,6 +2,10 @@
 //mongodb://<dbuser>:<dbpassword>@ds145380.mlab.com:45380/concave
 var node=require('node-schedule');
 
+var bayes=new classifier.Bayesian();
+
+bayes.train("i like pizza","pizza");
+bayes.train("i like car","car");
 
 
 
@@ -35,7 +39,7 @@ var users={
 
 
 
-module.exports=function (app,io,bayes) {
+module.exports=function (app,io) {
 
 
 io.on("connection",function(socket){
@@ -61,13 +65,11 @@ io.on("connection",function(socket){
     function predict(m,sender)
     {
 console.log(m+" "+sender);
-     /*   bayes.classify(m,function(cat){
+        bayes.classify(m,function(cat){
             console.log("category:"+sender+" "+cat);
         })
-*/
 
-     var result=m.match("/i like pizza/i");
-        console.log(result);
+
 
     }
 
