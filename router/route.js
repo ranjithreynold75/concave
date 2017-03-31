@@ -3,9 +3,9 @@
 var node=require('node-schedule');
 var bayes=require('bayes');
 var classifier=bayes();
-classifier.learn('like pizza','pizza');
+classifier.learn('like pizza','positive');
 
-
+classifier.learn('i dislike pizza','negative');
 
 var m=require('mongodb');
 var url="mongodb://concave:alwaysforward1.@ds145380.mlab.com:45380/concave";
@@ -70,9 +70,9 @@ var m1=classifier.categorize(m);
 
 
 
-if(m1=="pizza") {
+if(m1=="positive") {
     socket.emit("notify", {message: "20% off on Pizza near your pizza hut"});
-    collection.updateOne({_id:sender},{$push:{likes:m1}});
+
 }
     }
 
