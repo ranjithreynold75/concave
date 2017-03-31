@@ -92,12 +92,12 @@ console.log(m+" "+sender);
             }
           else if(m.match("emergency"))
             {
-                socket.emit("notify", {message: "Can in contact Emergency service!!!"});
+                socket.emit("notify", {message: "Can i contact Emergency service!!!"});
             }
         }
         if(m.match("emergency"))
         {
-            socket.emit("notify", {message: "Can in contact Emergency service!!!"});
+            socket.emit("notify", {message: "Can i contact Emergency service!!!"});
         }
 /*console.log(classifier.categorize(m));
 var m1=classifier.categorize(m);
