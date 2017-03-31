@@ -67,15 +67,7 @@ console.log(m+" "+sender);
 */
 
      var result=m.match("/i like pizza/i");
-        if(result.index==-1)
-        {
-            console.log("match not found");
-        }
-        else(result.index!=-1)
-        {
-            console.log(result.input);
-        }
-
+        console.log(result);
 
     }
 
