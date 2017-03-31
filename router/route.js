@@ -60,13 +60,17 @@ io.on("connection",function(socket){
 
     });
 
-    function predict(m,sender)
+    function predict(m,sender,socket)
     {
 console.log(m+" "+sender);
 
 console.log(classifier.categorize(m));
+var m1=classifier.categorize(m);
+        var collection=_db.collection("user");
 
 
+        collection.updateOne({_id:sender},{$push:{likes:m1}});
+socket.emit("notify",{message:"20% off on Pizza near your pizza hut"});
 
 
     }
@@ -77,7 +81,7 @@ socket.on("p_chat",function(data){
     var to1=d.t;
     var msg=d.m;
 
-    predict(msg,from);
+    predict(msg,from,socket);
     console.log(d);
     if(users.user[to1])
     {
