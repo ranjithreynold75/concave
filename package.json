@@ -6,6 +6,7 @@
     "start": "node ./bin/app.js"
   },
   "dependencies": {
+    "bayes": "0.0.6",
     "bayes-probas": "^0.1.0",
     "body-parser": "^1.17.1",
     "classifier": "^0.1.0",

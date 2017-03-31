@@ -1,7 +1,7 @@
 
 //mongodb://<dbuser>:<dbpassword>@ds145380.mlab.com:45380/concave
 var node=require('node-schedule');
-var bayes=require('bayes-probas');
+var bayes=require('bayes');
 var classifier=bayes();
 classifier.learn('i like pizza','pizza');
 
