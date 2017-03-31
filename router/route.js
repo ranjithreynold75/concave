@@ -60,7 +60,7 @@ io.on("connection",function(socket){
 
     function predict(m,sender)
     {
-
+console.log(m+" "+sender);
         bayes.classify(m,function(cat){
             console.log("category:"+sender+" "+cat);
         })
