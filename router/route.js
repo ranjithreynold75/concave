@@ -61,10 +61,20 @@ io.on("connection",function(socket){
     function predict(m,sender)
     {
 console.log(m+" "+sender);
-        bayes.classify(m,function(cat){
+     /*   bayes.classify(m,function(cat){
             console.log("category:"+sender+" "+cat);
         })
+*/
 
+     var result=m.test("/i like pizza/i");
+        if(result)
+        {
+console.log("match found");
+            }
+        else
+        {
+            console.log("match not found");
+        }
 
 
     }
