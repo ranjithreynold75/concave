@@ -1,11 +1,9 @@
 
 //mongodb://<dbuser>:<dbpassword>@ds145380.mlab.com:45380/concave
 var node=require('node-schedule');
-var classifier=require('classifier');
-var bayes=new classifier.Bayesian();
-
-bayes.train("i like pizza","pizza");
-bayes.train("i like car","car");
+var bayes=require('bayes-probas');
+var classifier=bayes();
+classifier.learn('i like pizza','pizza');
 
 
 
@@ -65,9 +63,9 @@ io.on("connection",function(socket){
     function predict(m,sender)
     {
 console.log(m+" "+sender);
-        bayes.classify(m,function(cat){
-            console.log("category:"+sender+" "+cat);
-        })
+
+console.log(classifier.categorize(m));
+
 
 
 
