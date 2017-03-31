@@ -71,6 +71,21 @@ console.log(m+" "+sender);
                 socket.emit("notify", {message: "20% off on Pizza near your pizza hut"});
 
             }
+            else
+            {
+                socket.emit("notify", {message: "Do you like pizza"});
+
+            }
+        }
+        else if(m.match("like"))
+        {
+
+            if(m.match("car"))
+            {
+                socket.emit("notify", {message: "New service offers for new car buyers"});
+
+            }
+
         }
 /*console.log(classifier.categorize(m));
 var m1=classifier.categorize(m);
