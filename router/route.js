@@ -1,5 +1,9 @@
 
 //mongodb://<dbuser>:<dbpassword>@ds145380.mlab.com:45380/concave
+var node=require('node-schedule');
+
+
+
 
 var m=require('mongodb');
 var url="mongodb://concave:alwaysforward1.@ds145380.mlab.com:45380/concave";
@@ -28,7 +32,10 @@ var users={
 
 
 
-module.exports=function (app,io) {
+
+
+
+module.exports=function (app,io,bayes) {
 
 
 io.on("connection",function(socket){
@@ -49,7 +56,18 @@ io.on("connection",function(socket){
     socket.on('disconnect', function () {
         console.log('A user disconnected ' + socket.id);
 
-    })
+    });
+
+    function predict(m,sender)
+    {
+
+        bayes.classify(m,function(cat){
+            console.log("category:"+sender+" "+cat);
+        })
+
+
+
+    }
 
 socket.on("p_chat",function(data){
     var d=JSON.parse(data);
@@ -57,12 +75,16 @@ socket.on("p_chat",function(data){
     var to1=d.t;
     var msg=d.m;
 
+    predict(msg,from);
     console.log(d);
     if(users.user[to1])
     {
         var s=users.user[to1];
         console.log(s);
         io.to(s).emit("receive",{from:from,message:msg});
+
+
+
     }
     else
     {
