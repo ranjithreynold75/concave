@@ -73,16 +73,31 @@ console.log(m+" "+sender);
             }
             else if(m.match("car"))
             {
-                socket.emit("notify", {message: "New service offers for new car buyers"});
+                socket.emit("notify", {message: "New nexa cars in showroom"});
 
             }
 
+        }
+        if(m.match("need"))
+        {
+            if(m.match("service"))
+            {
 
-
-
-
-
-
+            if(m.match("car")) {
+                socket.emit("notify", {message: "25% service part offer for  car in toyata showroom"});
+            }
+            else if(m.match("bike")){
+                socket.emit("notify", {message: "50% service offers for bikes in SK BIKE SHOWROOM"});
+            }
+            }
+          else if(m.match("emergency"))
+            {
+                socket.emit("notify", {message: "Can in contact Emergency service!!!"});
+            }
+        }
+        if(m.match("emergency"))
+        {
+            socket.emit("notify", {message: "Can in contact Emergency service!!!"});
         }
 /*console.log(classifier.categorize(m));
 var m1=classifier.categorize(m);
