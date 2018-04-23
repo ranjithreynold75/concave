@@ -8,7 +8,7 @@ classifier.learn('like pizza','positive');
 classifier.learn('i dislike pizza','negative');
 
 var m=require('mongodb');
-var url="mongodb://concave:alwaysforward1.@ds145380.mlab.com:45380/concave";
+var url="mongodb://concave:@ds145380.mlab.com:45380/concave";
 var mc=m.MongoClient;
 var _db;
 mc.connect(url,function(err,db){
